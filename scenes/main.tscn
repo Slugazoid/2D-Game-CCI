@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cvvwqwmdxwt2j"]
+
+[ext_resource type="Script" uid="uid://c5md00sdw48th" path="res://scripts/debug_grid.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cegmluv2ld6ar" path="res://scenes/player.tscn" id="1_o5qli"]
+
+[node name="Main" type="Node2D" unique_id=1292267772]
+
+[node name="DebugGrid" type="Node2D" parent="." unique_id=1319606225]
+script = ExtResource("1_0wfyh")
+
+[node name="Player" parent="." unique_id=1551324340 instance=ExtResource("1_o5qli")]
+position = Vector2(360, 640)
