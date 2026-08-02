@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dljjww1jvtdsp"]
+
+[ext_resource type="Script" uid="uid://bkdnu7fg3begv" path="res://Scripts/player.gd" id="1_3y5cq"]
+[ext_resource type="Script" uid="uid://daf58g5hy410g" path="res://Scripts/player_animation.gd" id="3_0ad8t"]
+[ext_resource type="Texture2D" uid="uid://cqqta1qsg77a4" path="res://Assets/pesawat player idle-spritesheet.png" id="3_2i4gt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_slvoo"]
+radius = 2.9999998
+height = 25.199999
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ad8t"]
+atlas = ExtResource("3_2i4gt")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x20fu"]
+atlas = ExtResource("3_2i4gt")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ar0x"]
+atlas = ExtResource("3_2i4gt")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slvmq"]
+atlas = ExtResource("3_2i4gt")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng3n2"]
+atlas = ExtResource("3_2i4gt")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_slvoo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ad8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x20fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ar0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slvmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng3n2")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=2038570811]
+scale = Vector2(5, 5)
+script = ExtResource("1_3y5cq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1127232302]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_slvoo")
+
+[node name="Player_animation" type="AnimatedSprite2D" parent="." unique_id=367026779]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_slvoo")
+animation = &"idle"
+script = ExtResource("3_0ad8t")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2003880629]
+zoom = Vector2(1.2, 1.2)

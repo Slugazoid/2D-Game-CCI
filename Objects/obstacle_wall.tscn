@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://i62emmlinbl"]
+
+[ext_resource type="Texture2D" uid="uid://t5mqu3bpoh5u" path="res://Assets/BG/Canyon-frame0.png" id="1_iuyh1"]
+[ext_resource type="Texture2D" uid="uid://dhs8vfovtx5nd" path="res://Assets/BG/rintangan tebing 2 sisi-spritesheet.png" id="2_fjhll"]
+
+[node name="Node2D" type="Node2D" unique_id=1706879217]
+
+[node name="obstacle_l" type="Sprite2D" parent="." unique_id=734178734]
+position = Vector2(250, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("1_iuyh1")
+
+[node name="RintanganTebing2SisiSpritesheet" type="Sprite2D" parent="." unique_id=1962983379]
+position = Vector2(640, 360)
+scale = Vector2(6, 6)
+texture = ExtResource("2_fjhll")
+
+[node name="CanyonFrame0" type="Sprite2D" parent="." unique_id=1962123977]
+position = Vector2(1030, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("1_iuyh1")
+flip_h = true
