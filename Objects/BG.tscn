@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bojl8mp68bdm2" path="res://Assets/BG/BG With Canyon-spritesheet.png" id="1_k8wrh"]
 [ext_resource type="Texture2D" uid="uid://bo6el6ucgkgu5" path="res://Assets/bg.jpeg" id="1_m6dl5"]
-[ext_resource type="Script" uid="uid://b0k51rritdson" path="res://Scripts/background.gd" id="2_vgsla"]
+[ext_resource type="Script" uid="uid://b0k51rritdson" path="res://scripts/background.gd" id="2_vgsla"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgsla"]
 atlas = ExtResource("1_k8wrh")

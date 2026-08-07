@@ -42,20 +42,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		move_grid(0, 1)
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("shoot"):
 		shoot_laser()
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_A, KEY_LEFT:
-				move_grid(-1, 0)
-			KEY_D, KEY_RIGHT:
-				move_grid(1, 0)
-			KEY_W, KEY_UP:
-				move_grid(0, -1)
-			KEY_S, KEY_DOWN:
-				move_grid(0, 1)
-			KEY_SPACE, KEY_J:
-				shoot_laser()
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		shoot_laser()
 
