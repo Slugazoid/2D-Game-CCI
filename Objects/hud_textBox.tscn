@@ -6,6 +6,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_18ief"]
 font_names = PackedStringArray("Bandung")
+subpixel_positioning = 0
 
 [node name="HudTextBox" type="CanvasLayer" unique_id=1301680642]
 script = ExtResource("3_hudscript")

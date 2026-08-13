@@ -16,6 +16,6 @@ scale = Vector2(4.0049996, 2.6299999)
 texture = ExtResource("3_321yq")
 
 [node name="Player" parent="." unique_id=2038570811 instance=ExtResource("2_4hxcq")]
-position = Vector2(640, 360)
+position = Vector2(640, 450)
 
 [node name="HudTextBox" parent="." unique_id=1301680642 instance=ExtResource("4_hud")]
