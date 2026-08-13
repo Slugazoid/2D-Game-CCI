@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://bhlota8vudks5"]
 
-[ext_resource type="PackedScene" uid="uid://d2wgyefhc7r06" path="res://Objects/BG.tscn" id="1_bg"]
+[ext_resource type="PackedScene" path="res://Objects/MenuBackground.tscn" id="1_bg"]
 [ext_resource type="Texture2D" uid="uid://cqqta1qsg77a4" path="res://Assets/pesawat player idle-spritesheet.png" id="2_ship_tex"]
 [ext_resource type="Script" uid="uid://d4dlbi4bgxojt" path="res://scripts/main_menu.gd" id="3_menu"]
 [ext_resource type="Script" uid="uid://oqjwystey7v7" path="res://scripts/ship_float.gd" id="4_float"]
-[ext_resource type="Script" uid="uid://xujdtxrtpt1q" path="res://scripts/gear_icon.gd" id="5_gear"]
-[ext_resource type="Script" uid="uid://vl0tt7c6mwdl" path="res://scripts/play_icon.gd" id="6_play"]
+[ext_resource type="Texture2D" path="res://Assets/PNG/Button/OPTION_BUTTON_.png" id="5_cfo48"]
+[ext_resource type="Script" uid="uid://cvr0bwlttxgff" path="res://scripts/ui_button_hover.gd" id="5_hover"]
+[ext_resource type="Texture2D" path="res://Assets/PNG/Button/Play_Button.png" id="7_pa55y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ship0"]
 atlas = ExtResource("2_ship_tex")
@@ -79,55 +80,35 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShipIcon" type="AnimatedSprite2D" parent="UI/Root" unique_id=1929033687]
-position = Vector2(570, 120)
+position = Vector2(570, 108)
 scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_ship")
 animation = &"idle"
 script = ExtResource("4_float")
 
-[node name="SettingsButton" type="Button" parent="UI/Root" unique_id=2105061227]
+[node name="SettingsButton" type="TextureButton" parent="UI/Root" unique_id=2105061227]
 layout_mode = 0
-offset_left = 260.0
-offset_top = 300.0
-offset_right = 380.0
-offset_bottom = 420.0
+offset_left = 290.0
+offset_top = 320.0
+offset_right = 500.0
+offset_bottom = 460.0
 focus_mode = 0
-script = ExtResource("5_gear")
+texture_normal = ExtResource("5_cfo48")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("5_hover")
 
-[node name="SettingsLabel" type="Label" parent="UI/Root" unique_id=1513745478]
+[node name="PlayButton" type="TextureButton" parent="UI/Root" unique_id=981180922]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 425.0
-offset_right = 400.0
-offset_bottom = 455.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 20
-text = "SETTINGS"
-horizontal_alignment = 1
-
-[node name="PlayButton" type="Button" parent="UI/Root" unique_id=981180922]
-layout_mode = 0
-offset_left = 900.0
-offset_top = 300.0
-offset_right = 1020.0
-offset_bottom = 420.0
+offset_left = 850.0
+offset_top = 320.0
+offset_right = 1060.0
+offset_bottom = 460.0
 focus_mode = 0
-script = ExtResource("6_play")
-
-[node name="PlayLabel" type="Label" parent="UI/Root" unique_id=1372964511]
-layout_mode = 0
-offset_left = 880.0
-offset_top = 425.0
-offset_right = 1040.0
-offset_bottom = 455.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 20
-text = "PLAY"
-horizontal_alignment = 1
+texture_normal = ExtResource("7_pa55y")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("5_hover")
 
 [connection signal="pressed" from="UI/Root/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="UI/Root/PlayButton" to="." method="_on_play_button_pressed"]

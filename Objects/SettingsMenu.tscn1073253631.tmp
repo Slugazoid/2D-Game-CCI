@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://Objects/MenuBackground.tscn" id="1_bg"]
 [ext_resource type="Script" uid="uid://d6gdjd4fmo0t" path="res://scripts/settings_menu.gd" id="2_settings"]
 [ext_resource type="Script" uid="uid://cvr0bwlttxgff" path="res://scripts/ui_button_hover.gd" id="3_hover"]
-[ext_resource type="Texture2D" path="res://Assets/PNG/Button/X_Button.png" id="3_x63yy"]
+[ext_resource type="Texture2D" uid="uid://bwyvypi4es7sm" path="res://Assets/PNG/Button/X_Button.png" id="3_x63yy"]
 
 [node name="SettingsMenu" type="Node2D" unique_id=771864935]
 script = ExtResource("2_settings")
@@ -85,9 +85,9 @@ script = ExtResource("3_hover")
 
 [node name="BackButton" type="TextureButton" parent="UI/Root" unique_id=1411464572]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 20.0
 offset_top = 10.0
-offset_right = 150.0
+offset_right = 110.0
 offset_bottom = 100.0
 focus_mode = 0
 texture_normal = ExtResource("3_x63yy")

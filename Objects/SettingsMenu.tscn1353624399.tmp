@@ -85,9 +85,9 @@ script = ExtResource("3_hover")
 
 [node name="BackButton" type="TextureButton" parent="UI/Root" unique_id=1411464572]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 20.0
 offset_top = 10.0
-offset_right = 150.0
+offset_right = 110.0
 offset_bottom = 100.0
 focus_mode = 0
 texture_normal = ExtResource("3_x63yy")

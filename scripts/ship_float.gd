@@ -1,5 +1,4 @@
 extends AnimatedSprite2D
-## Bikin sprite pesawat "melayang" naik-turun pelan di main menu.
 
 @export var amplitude: float = 8.0
 @export var speed: float = 2.0

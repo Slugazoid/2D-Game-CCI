@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://t5mqu3bpoh5u" path="res://Assets/BG/Canyon-frame0.png" id="1_m6dl5"]
 [ext_resource type="Texture2D" uid="uid://debyfl43i1c03" path="res://Assets/Screenshot 2026-08-12 113019.png" id="1_vy64j"]
-[ext_resource type="Script" uid="uid://b0k51rritdson" path="res://Scripts/wall-kiri.gd" id="2_vgsla"]
+[ext_resource type="Script" uid="uid://b0k51rritdson" path="res://scripts/wall-kiri.gd" id="2_vgsla"]
 [ext_resource type="Texture2D" uid="uid://dqx3tjgep88l0" path="res://Assets/BG/Sky-spritesheet.png" id="3_vgsla"]
 [ext_resource type="Script" uid="uid://ck14775cuuipr" path="res://Objects/wall-kanan.gd" id="4_q60mq"]
 
