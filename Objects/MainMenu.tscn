@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://bhlota8vudks5"]
+
+[ext_resource type="PackedScene" uid="uid://d2wgyefhc7r06" path="res://Objects/BG.tscn" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://cqqta1qsg77a4" path="res://Assets/pesawat player idle-spritesheet.png" id="2_ship_tex"]
+[ext_resource type="Script" uid="uid://d4dlbi4bgxojt" path="res://scripts/main_menu.gd" id="3_menu"]
+[ext_resource type="Script" uid="uid://oqjwystey7v7" path="res://scripts/ship_float.gd" id="4_float"]
+[ext_resource type="Script" uid="uid://xujdtxrtpt1q" path="res://scripts/gear_icon.gd" id="5_gear"]
+[ext_resource type="Script" uid="uid://vl0tt7c6mwdl" path="res://scripts/play_icon.gd" id="6_play"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ship0"]
+atlas = ExtResource("2_ship_tex")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ship1"]
+atlas = ExtResource("2_ship_tex")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ship2"]
+atlas = ExtResource("2_ship_tex")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ship3"]
+atlas = ExtResource("2_ship_tex")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ship4"]
+atlas = ExtResource("2_ship_tex")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ship"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ship0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ship1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ship2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ship3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ship4")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="MainMenu" type="Node2D" unique_id=663204325]
+script = ExtResource("3_menu")
+
+[node name="Bg" parent="." unique_id=46747334 instance=ExtResource("1_bg")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1754673675]
+
+[node name="Root" type="Control" parent="UI" unique_id=1217771376]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="UI/Root" unique_id=1868861587]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 1280.0
+offset_bottom = 140.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 56
+text = "BUMB         DABOUNTY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShipIcon" type="AnimatedSprite2D" parent="UI/Root" unique_id=1929033687]
+position = Vector2(570, 120)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_ship")
+animation = &"idle"
+script = ExtResource("4_float")
+
+[node name="SettingsButton" type="Button" parent="UI/Root" unique_id=2105061227]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 300.0
+offset_right = 380.0
+offset_bottom = 420.0
+focus_mode = 0
+script = ExtResource("5_gear")
+
+[node name="SettingsLabel" type="Label" parent="UI/Root" unique_id=1513745478]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 425.0
+offset_right = 400.0
+offset_bottom = 455.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="UI/Root" unique_id=981180922]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 300.0
+offset_right = 1020.0
+offset_bottom = 420.0
+focus_mode = 0
+script = ExtResource("6_play")
+
+[node name="PlayLabel" type="Label" parent="UI/Root" unique_id=1372964511]
+layout_mode = 0
+offset_left = 880.0
+offset_top = 425.0
+offset_right = 1040.0
+offset_bottom = 455.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "PLAY"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="UI/Root/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UI/Root/PlayButton" to="." method="_on_play_button_pressed"]
