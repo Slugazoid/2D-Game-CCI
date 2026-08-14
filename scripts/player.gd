@@ -4,6 +4,8 @@ class_name PlayerShip
 var grid_col: int = 1
 var grid_row: int = 1
 
+@onready var laser_sound: AudioStreamPlayer = $LaserSound
+
 @export var grid_center: Vector2 = Vector2(640, 360)
 @export var cell_width: float = 240.0
 @export var cell_height: float = 160.0
@@ -73,6 +75,7 @@ func shoot_laser() -> void:
 		var spawn_pos = global_position + offset
 		if current_scene:
 			current_scene.add_child(laser)
+			laser_sound.play()
 		elif get_parent():
 			get_parent().add_child(laser)
 			

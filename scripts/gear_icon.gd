@@ -4,8 +4,6 @@ extends Button
 @export var icon_color: Color = Color(0.92, 0.92, 0.96)
 @export var bg_color: Color = Color(0.08, 0.08, 0.1, 0.55)
 
-var _hover_scale := 1.0
-
 func _ready() -> void:
 	flat = true # hilangin style default tombol Godot
 	pivot_offset = size / 2.0
