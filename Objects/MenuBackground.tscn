@@ -1,8 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://xvrh58h884h4"]
 
 [ext_resource type="Texture2D" uid="uid://bojl8mp68bdm2" path="res://Assets/BG/BG With Canyon-spritesheet.png" id="1_k8wrh"]
 [ext_resource type="Texture2D" uid="uid://bo6el6ucgkgu5" path="res://Assets/bg.jpeg" id="1_m6dl5"]
-[ext_resource type="Script" path="res://scripts/menu_background_anim.gd" id="2_vgsla"]
+[ext_resource type="Script" uid="uid://jmmc6dxt16ep" path="res://scripts/menu_background_anim.gd" id="2_vgsla"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgsla"]
 atlas = ExtResource("1_k8wrh")
@@ -306,7 +306,7 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="MenuBackground" type="Node2D"]
+[node name="MenuBackground" type="Node2D" unique_id=1476533542]
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=29905208]
 position = Vector2(640, 360)
