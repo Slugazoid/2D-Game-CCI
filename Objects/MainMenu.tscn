@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cqqta1qsg77a4" path="res://Assets/pesawat player idle-spritesheet.png" id="2_ship_tex"]
 [ext_resource type="Script" uid="uid://d4dlbi4bgxojt" path="res://scripts/main_menu.gd" id="3_menu"]
 [ext_resource type="Script" uid="uid://oqjwystey7v7" path="res://scripts/ship_float.gd" id="4_float"]
-[ext_resource type="Texture2D" path="res://Assets/PNG/Button/OPTION_BUTTON_.png" id="5_cfo48"]
+[ext_resource type="Texture2D" path="res://Assets/Button/PNG/OPTION_BUTTON_.png" id="5_cfo48"]
 [ext_resource type="Script" uid="uid://cvr0bwlttxgff" path="res://scripts/ui_button_hover.gd" id="5_hover"]
-[ext_resource type="Texture2D" path="res://Assets/PNG/Button/Play_Button.png" id="7_pa55y"]
+[ext_resource type="Texture2D" path="res://Assets/Button/PNG/Play_Button.png" id="7_pa55y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ship0"]
 atlas = ExtResource("2_ship_tex")
