@@ -12,12 +12,13 @@ config_version=5
 
 config/name="2D-Game-CCI"
 run/main_scene="res://Objects/MainMenu.tscn"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SceneTransition="*res://scripts/scene_transition.gd"
+MainMusic="*uid://btdw8unsnff5m"
 
 [display]
 

@@ -45,7 +45,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ship4")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
 "speed": 10.0
 }]

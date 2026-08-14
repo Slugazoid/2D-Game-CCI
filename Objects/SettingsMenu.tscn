@@ -1,27 +1,26 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://cm2rurohuv173"]
 
-[ext_resource type="PackedScene" path="res://Objects/BG.tscn" id="1_bg"]
-[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="2_settings"]
-[ext_resource type="Script" path="res://scripts/back_icon.gd" id="3_back"]
+[ext_resource type="PackedScene" uid="uid://d2wgyefhc7r06" path="res://Objects/BG.tscn" id="1_bg"]
+[ext_resource type="Script" uid="uid://d6gdjd4fmo0t" path="res://scripts/settings_menu.gd" id="2_settings"]
+[ext_resource type="Script" uid="uid://bwy1k021uyc62" path="res://scripts/back_icon.gd" id="3_back"]
 
-[node name="SettingsMenu" type="Node2D"]
+[node name="SettingsMenu" type="Node2D" unique_id=1212717341]
 script = ExtResource("2_settings")
 
-[node name="Bg" parent="." instance=ExtResource("1_bg")]
+[node name="Bg" parent="." unique_id=373945060 instance=ExtResource("1_bg")]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=721894949]
 
-[node name="Root" type="Control" parent="UI"]
-layout_mode = 1
+[node name="Root" type="Control" parent="UI" unique_id=1616671909]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="UI/Root"]
+[node name="Title" type="Label" parent="UI/Root" unique_id=816854488]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 80.0
 offset_right = 1280.0
 offset_bottom = 150.0
@@ -33,7 +32,7 @@ text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterBox" type="VBoxContainer" parent="UI/Root"]
+[node name="CenterBox" type="VBoxContainer" parent="UI/Root" unique_id=1714765537]
 layout_mode = 0
 offset_left = 390.0
 offset_top = 300.0
@@ -41,7 +40,7 @@ offset_right = 890.0
 offset_bottom = 420.0
 theme_override_constants/separation = 20
 
-[node name="VolumeLabel" type="Label" parent="UI/Root/CenterBox"]
+[node name="VolumeLabel" type="Label" parent="UI/Root/CenterBox" unique_id=120328887]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 1)
@@ -50,21 +49,20 @@ theme_override_font_sizes/font_size = 26
 text = "VOLUME"
 horizontal_alignment = 1
 
-[node name="VolumeRow" type="HBoxContainer" parent="UI/Root/CenterBox"]
+[node name="VolumeRow" type="HBoxContainer" parent="UI/Root/CenterBox" unique_id=342132408]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="VolumeSlider" type="HSlider" parent="UI/Root/CenterBox/VolumeRow"]
+[node name="VolumeSlider" type="HSlider" parent="UI/Root/CenterBox/VolumeRow" unique_id=826955484]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-min_value = 0.0
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="VolumeValue" type="Label" parent="UI/Root/CenterBox/VolumeRow"]
+[node name="VolumeValue" type="Label" parent="UI/Root/CenterBox/VolumeRow" unique_id=672993157]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -75,7 +73,7 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackButton" type="Button" parent="UI/Root"]
+[node name="BackButton" type="Button" parent="UI/Root" unique_id=696484411]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 620.0
