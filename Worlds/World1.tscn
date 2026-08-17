@@ -37,14 +37,32 @@ position = Vector2(635, 354)
 visible = false
 test_mode = false
 
-[node name="HpHud" type="CanvasLayer" parent="." unique_id=417488803]
+[node name="TextHud" type="CanvasLayer" parent="." unique_id=417488803]
 layer = 10
 
-[node name="HpLabel" type="Label" parent="HpHud" unique_id=832489353]
+[node name="SpeedLabel" type="Label" parent="TextHud" unique_id=1422716135]
+offset_left = 27.0
+offset_top = 59.0
+offset_right = 199.0
+offset_bottom = 99.0
+text = "Speed: 0 m/s"
+label_settings = SubResource("LabelSettings_hp")
+vertical_alignment = 1
+
+[node name="DistanceLabel" type="Label" parent="TextHud" unique_id=63391932]
+offset_left = 592.0
+offset_top = 27.0
+offset_right = 752.0
+offset_bottom = 67.0
+text = "Jarak: 0/9000"
+label_settings = SubResource("LabelSettings_hp")
+vertical_alignment = 1
+
+[node name="CrashLabel" type="Label" parent="TextHud" unique_id=832489353]
 offset_left = 20.0
 offset_top = 15.0
 offset_right = 180.0
 offset_bottom = 55.0
-text = "5/5"
+text = "Crash: 0"
 label_settings = SubResource("LabelSettings_hp")
 vertical_alignment = 1

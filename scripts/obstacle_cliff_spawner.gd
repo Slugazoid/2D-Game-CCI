@@ -1,17 +1,16 @@
 extends Node2D
 
-
 @export var cliff_texture: Texture2D
 @export var spawn_interval_min: float = 1.5
 @export var spawn_interval_max: float = 3.5
-@export var cliff_speed: float = 0.6  # Kecepatan
+@export var cliff_speed: float = 0.6 # Kecepatan obstacle
 
-# Perspektif settings
+# Setting perspektif
 @export var vanishing_point_y: float = 350.0
 @export var vanishing_point_left_x: float = 540.0
 @export var vanishing_point_right_x: float = 740.0
 
-# End points
+# Titik akhir
 @export var end_left: Vector2 = Vector2(400, 354)
 @export var end_right: Vector2 = Vector2(880, 354)
 
@@ -19,7 +18,7 @@ extends Node2D
 @export var max_scale: Vector2 = Vector2(2.5, 2.5)
 @export var curve_power: float = 2.0
 
-# Collision threshold
+# Threshold tabrakan
 @export var collision_progress_min: float = 0.85
 @export var collision_progress_max: float = 1.0
 
@@ -62,11 +61,11 @@ func _process(delta: float) -> void:
 		cliff_data.scale = sc
 		cliff_data.perspective = perspective_curve
 		
-		# Cek collision
+		# Cek tabrakan
 		if p >= collision_progress_min and p <= collision_progress_max and not cliff_data.hit:
 			_check_collision(cliff_data)
 	
-	# Hapus cliff yang sudah lewat
+	# Hapus obstacle lewat
 	for cliff_data in cliffs_to_remove:
 		active_cliffs.erase(cliff_data)
 	
@@ -127,10 +126,10 @@ func _draw() -> void:
 	sorted_cliffs.sort_custom(func(a, b): return a.progress < b.progress)
 	
 	for cliff_data in sorted_cliffs:
-		var flip_x = cliff_data.side == 1  # Flip untuk sisi kanan
+		var flip_x = cliff_data.side == 1 # Flip sisi kanan
 		var sc = cliff_data.scale
 		if flip_x:
-			sc.x = -sc.x  # Flip horizontal
+			sc.x = -sc.x # Flip horizontal
 		
 		draw_set_transform(cliff_data.position, 0.0, sc)
 		draw_texture(cliff_texture, offset)
