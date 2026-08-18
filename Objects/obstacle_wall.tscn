@@ -16,7 +16,7 @@ scale = Vector2(6, 6)
 texture = ExtResource("2_fjhll")
 
 [node name="CanyonFrame0" type="Sprite2D" parent="." unique_id=1962123977]
-position = Vector2(1030, 360)
+position = Vector2(1030, 358)
 scale = Vector2(2, 2)
 texture = ExtResource("1_iuyh1")
 flip_h = true

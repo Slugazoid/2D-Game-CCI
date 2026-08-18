@@ -96,7 +96,7 @@ func _on_zone_entered(grace_seconds: float) -> void:
 
 func _on_game_won() -> void:
 	if hud_text_box:
-		hud_text_box.show_message("Target tercapai! Skill aktif!", 3.0)
+		hud_text_box.show_message("Target tercapai! Kerja Bagus!", 3.0)
 	
 	await get_tree().create_timer(3.0).timeout
 	SceneTransition.goto_scene("res://Objects/MainMenu.tscn")
