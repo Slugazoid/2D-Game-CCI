@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cr1k1bbfmq6n1"]
+
+[ext_resource type="Script" uid="uid://dktvwxpy57kd3" path="res://scripts/target_ship.gd" id="1_target"]
+[ext_resource type="Texture2D" uid="uid://l5ie68glf1dv" path="res://Assets/player.png" id="2_target_tex"]
+
+[node name="TargetShip" type="Node2D" unique_id=991895364]
+script = ExtResource("1_target")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1924845259]
+texture = ExtResource("2_target_tex")

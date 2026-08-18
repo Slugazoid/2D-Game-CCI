@@ -5,6 +5,13 @@ extends Node2D
 @export var spawn_interval_max: float = 3.5
 @export var cliff_speed: float = 0.6 # Kecepatan obstacle
 
+# Final stretch (sisa jarak <= 1000m, pas target udah muncul): obstacle dikurangin biar
+# player fokus ke target, bukan malah tambah ribet. Dikontrol dari luar via set_final_stretch().
+@export var final_stretch_interval_multiplier: float = 2.5 # jarak spawn makin jarang (dikali interval normal)
+@export var final_stretch_stop_spawning: bool = false # true = obstacle baru berhenti sama sekali
+
+var _in_final_stretch: bool = false
+
 # Setting perspektif
 @export var vanishing_point_y: float = 350.0
 @export var vanishing_point_left_x: float = 540.0
@@ -29,15 +36,27 @@ func _ready() -> void:
 	_reset_spawn_timer()
 
 func _reset_spawn_timer() -> void:
-	spawn_timer = randf_range(spawn_interval_min, spawn_interval_max)
+	var interval_min := spawn_interval_min
+	var interval_max := spawn_interval_max
+	if _in_final_stretch:
+		interval_min *= final_stretch_interval_multiplier
+		interval_max *= final_stretch_interval_multiplier
+	spawn_timer = randf_range(interval_min, interval_max)
+
+## Dipanggil dari world1.gd pas GameplayManager emit target_appeared (sisa jarak <= 1000m)
+## dan pas game_won/reset buat balikin ke normal lagi.
+func set_final_stretch(active: bool) -> void:
+	_in_final_stretch = active
+	_reset_spawn_timer() # langsung apply interval baru, gak nunggu timer abis dulu
 
 func _process(delta: float) -> void:
 	var speed_mult := _get_speed_multiplier()
 	
-	spawn_timer -= delta
-	if spawn_timer <= 0.0:
-		_spawn_cliff()
-		_reset_spawn_timer()
+	if not (_in_final_stretch and final_stretch_stop_spawning):
+		spawn_timer -= delta
+		if spawn_timer <= 0.0:
+			_spawn_cliff()
+			_reset_spawn_timer()
 	
 	var cliffs_to_remove: Array = []
 	for cliff_data in active_cliffs:

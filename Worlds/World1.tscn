@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b15bvsahb3j34" path="res://Assets/33.png" id="3_321yq"]
 [ext_resource type="PackedScene" uid="uid://c4iw4crvbe6kf" path="res://Objects/hud_textBox.tscn" id="4_hud"]
 [ext_resource type="Texture2D" uid="uid://dl7ecc2abhj1e" path="res://Assets/BG/cliffedge.png" id="5_4rrd2"]
-[ext_resource type="Script" uid="uid://dgh8mro80nxhm" path="res://Scripts/world1.gd" id="5_world1"]
-[ext_resource type="Script" uid="uid://ba7e5nt3l417d" path="res://Scripts/obstacle_cliff_spawner.gd" id="7_cliff_spawner"]
+[ext_resource type="Script" uid="uid://dgh8mro80nxhm" path="res://scripts/world1.gd" id="5_world1"]
+[ext_resource type="Script" uid="uid://ba7e5nt3l417d" path="res://scripts/obstacle_cliff_spawner.gd" id="7_cliff_spawner"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hp"]
 font_size = 28
@@ -59,9 +59,9 @@ label_settings = SubResource("LabelSettings_hp")
 vertical_alignment = 1
 
 [node name="CrashLabel" type="Label" parent="TextHud" unique_id=832489353]
-offset_left = 20.0
+offset_left = 26.0
 offset_top = 15.0
-offset_right = 180.0
+offset_right = 186.0
 offset_bottom = 55.0
 text = "Crash: 0"
 label_settings = SubResource("LabelSettings_hp")

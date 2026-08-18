@@ -4,6 +4,7 @@ extends Node
 # so the music doesn't restart every time SceneTransition swaps the scene.
 
 const MAIN_MENU_BGM := preload("res://Assets/Audio/BGM/Main Menu BGM.mp3")
+const GAMEPLAY_BGM := preload("res://Assets/Audio/BGM/Gameplay BGM.mp3")
 
 var _player: AudioStreamPlayer
 
