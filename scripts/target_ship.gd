@@ -7,14 +7,14 @@ class_name TargetShip
 
 @export var vanish_point: Vector2 = Vector2(640, 340)   # posisi awal muncul, jauh & kecil
 @export var arrival_point: Vector2 = Vector2(640, 430)  # posisi saat sudah di radius aktivasi (900m)
-@export var min_scale: Vector2 = Vector2(0.04, 0.04)    # skala pas baru muncul (jauh)
-@export var max_scale: Vector2 = Vector2(0.35, 0.35)    # skala pas sudah dekat (radius aktivasi)
+@export var min_scale: Vector2 = Vector2(0.22, 0.22)    # skala pas baru muncul (jauh)
+@export var max_scale: Vector2 = Vector2(1.91, 1.91)    # skala pas sudah dekat (radius aktivasi)
 @export var fade_in_duration: float = 1.0
 
 @export var float_amplitude: float = 4.0  # efek melayang halus
 @export var float_speed: float = 1.5
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 
 var _is_active: bool = false
 var _float_t: float = 0.0
