@@ -1,17 +1,18 @@
-[gd_scene format=3 uid="uid://cm2rurohuv173"]
+[gd_scene format=3 uid="uid://wd5dkcvkjrie"]
 
-[ext_resource type="PackedScene" uid="uid://d2wgyefhc7r06" path="res://Objects/BG.tscn" id="1_bg"]
+[ext_resource type="PackedScene" uid="uid://xvrh58h884h4" path="res://Objects/MenuBackground.tscn" id="1_bg"]
 [ext_resource type="Script" uid="uid://d6gdjd4fmo0t" path="res://scripts/settings_menu.gd" id="2_settings"]
-[ext_resource type="Script" uid="uid://bwy1k021uyc62" path="res://scripts/back_icon.gd" id="3_back"]
+[ext_resource type="Script" uid="uid://cvr0bwlttxgff" path="res://scripts/ui_button_hover.gd" id="3_hover"]
+[ext_resource type="Texture2D" uid="uid://bwyvypi4es7sm" path="res://Assets/Button/PNG/X_Button.png" id="4_x63yy"]
 
-[node name="SettingsMenu" type="Node2D" unique_id=1212717341]
+[node name="SettingsMenu" type="Node2D" unique_id=771864935]
 script = ExtResource("2_settings")
 
-[node name="Bg" parent="." unique_id=373945060 instance=ExtResource("1_bg")]
+[node name="Bg" parent="." unique_id=1558584910 instance=ExtResource("1_bg")]
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=721894949]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1978195581]
 
-[node name="Root" type="Control" parent="UI" unique_id=1616671909]
+[node name="Root" type="Control" parent="UI" unique_id=746296942]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="UI/Root" unique_id=816854488]
+[node name="Title" type="Label" parent="UI/Root" unique_id=1220818671]
 layout_mode = 0
 offset_top = 80.0
 offset_right = 1280.0
@@ -32,16 +33,12 @@ text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterBox" type="VBoxContainer" parent="UI/Root" unique_id=1714765537]
+[node name="VolumeLabel" type="Label" parent="UI/Root" unique_id=1038510228]
 layout_mode = 0
-offset_left = 390.0
-offset_top = 300.0
-offset_right = 890.0
-offset_bottom = 420.0
-theme_override_constants/separation = 20
-
-[node name="VolumeLabel" type="Label" parent="UI/Root/CenterBox" unique_id=120328887]
-layout_mode = 2
+offset_left = 370.0
+offset_top = 270.0
+offset_right = 922.0
+offset_bottom = 306.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 1)
 theme_override_constants/outline_size = 4
@@ -49,11 +46,19 @@ theme_override_font_sizes/font_size = 26
 text = "VOLUME"
 horizontal_alignment = 1
 
-[node name="VolumeRow" type="HBoxContainer" parent="UI/Root/CenterBox" unique_id=342132408]
+[node name="CenterBox" type="VBoxContainer" parent="UI/Root" unique_id=1331106377]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 280.0
+offset_right = 942.0
+offset_bottom = 426.0
+theme_override_constants/separation = 20
+
+[node name="VolumeRow" type="HBoxContainer" parent="UI/Root/CenterBox" unique_id=1899590518]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="VolumeSlider" type="HSlider" parent="UI/Root/CenterBox/VolumeRow" unique_id=826955484]
+[node name="VolumeSlider" type="HSlider" parent="UI/Root/CenterBox/VolumeRow" unique_id=939010692]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -62,7 +67,7 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="VolumeValue" type="Label" parent="UI/Root/CenterBox/VolumeRow" unique_id=672993157]
+[node name="VolumeValue" type="Label" parent="UI/Root/CenterBox/VolumeRow" unique_id=1166723800]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -73,13 +78,25 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackButton" type="Button" parent="UI/Root" unique_id=696484411]
+[node name="MuteButton" type="TextureButton" parent="UI/Root/CenterBox/VolumeRow" unique_id=644394840]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("3_hover")
+
+[node name="BackButton" type="TextureButton" parent="UI/Root" unique_id=1411464572]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 620.0
+offset_top = 10.0
 offset_right = 150.0
-offset_bottom = 710.0
+offset_bottom = 100.0
 focus_mode = 0
-script = ExtResource("3_back")
+texture_normal = ExtResource("4_x63yy")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("3_hover")
 
 [connection signal="pressed" from="UI/Root/BackButton" to="." method="_on_back_button_pressed"]

@@ -4,8 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://dljjww1jvtdsp" path="res://Objects/player.tscn" id="2_4hxcq"]
 [ext_resource type="Texture2D" uid="uid://b15bvsahb3j34" path="res://Assets/33.png" id="3_321yq"]
 [ext_resource type="PackedScene" uid="uid://c4iw4crvbe6kf" path="res://Objects/hud_textBox.tscn" id="4_hud"]
+[ext_resource type="Script" uid="uid://dgh8mro80nxhm" path="res://scripts/world1.gd" id="5_world1"]
+[ext_resource type="Script" uid="uid://ba7e5nt3l417d" path="res://scripts/obstacle_cliff_spawner.gd" id="7_cliff_spawner"]
+[ext_resource type="Texture2D" uid="uid://u7ot1co2wyx8" path="res://Assets/BG/tebing sisi kiri.png" id="8_tebing_kiri"]
+[ext_resource type="Texture2D" uid="uid://dgxtkh4yikrf3" path="res://Assets/BG/tebing 1x2 sisi kanan.png" id="9_tebing_kanan"]
+[ext_resource type="Texture2D" uid="uid://bnphl0vw4j1mr" path="res://Assets/BG/tebing tengah.png" id="10_tebing_tengah"]
+[ext_resource type="Texture2D" uid="uid://cmd07ral0i8sq" path="res://Assets/BG/ssCliff-clean.png" id="11_ssCliff"]
+[ext_resource type="Texture2D" uid="uid://cogycogieta84" path="res://Assets/BG/ssCliff-clean-right.png" id="12_ssCliff_right"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hp"]
+font_size = 28
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="World1" type="Node2D" unique_id=1512357304]
+script = ExtResource("5_world1")
 
 [node name="Bg" parent="." unique_id=355612197 instance=ExtResource("1_cp1q5")]
 
@@ -15,7 +28,49 @@ position = Vector2(640, 360)
 scale = Vector2(4.0049996, 2.6299999)
 texture = ExtResource("3_321yq")
 
+[node name="ObstacleCliffSpawner" type="Node2D" parent="." unique_id=2043206313]
+z_index = 1
+script = ExtResource("7_cliff_spawner")
+left_texture = ExtResource("11_ssCliff")
+right_texture = ExtResource("12_ssCliff_right")
+center_texture = ExtResource("10_tebing_tengah")
+both_left_texture = ExtResource("8_tebing_kiri")
+both_right_texture = ExtResource("9_tebing_kanan")
+
 [node name="Player" parent="." unique_id=2038570811 instance=ExtResource("2_4hxcq")]
-position = Vector2(640, 450)
+z_index = 2
+position = Vector2(635, 354)
 
 [node name="HudTextBox" parent="." unique_id=1301680642 instance=ExtResource("4_hud")]
+visible = false
+test_mode = false
+
+[node name="TextHud" type="CanvasLayer" parent="." unique_id=417488803]
+layer = 10
+
+[node name="SpeedLabel" type="Label" parent="TextHud" unique_id=1422716135]
+offset_left = 27.0
+offset_top = 59.0
+offset_right = 199.0
+offset_bottom = 99.0
+text = "Speed: 0 m/s"
+label_settings = SubResource("LabelSettings_hp")
+vertical_alignment = 1
+
+[node name="DistanceLabel" type="Label" parent="TextHud" unique_id=63391932]
+offset_left = 592.0
+offset_top = 27.0
+offset_right = 752.0
+offset_bottom = 67.0
+text = "Jarak: 0/9000"
+label_settings = SubResource("LabelSettings_hp")
+vertical_alignment = 1
+
+[node name="CrashLabel" type="Label" parent="TextHud" unique_id=832489353]
+offset_left = 26.0
+offset_top = 15.0
+offset_right = 186.0
+offset_bottom = 55.0
+text = "Crash: 0"
+label_settings = SubResource("LabelSettings_hp")
+vertical_alignment = 1

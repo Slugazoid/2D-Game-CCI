@@ -1,10 +1,10 @@
-extends Node2D
+extends CharacterBody2D
 class_name PlayerShip
+
+signal player_hit # Sinyal tabrakan
 
 var grid_col: int = 1
 var grid_row: int = 1
-
-@onready var laser_sound: AudioStreamPlayer = $LaserSound
 
 @export var grid_center: Vector2 = Vector2(640, 360)
 @export var cell_width: float = 240.0
@@ -12,7 +12,7 @@ var grid_row: int = 1
 
 @export var laser_scene: PackedScene = preload("res://Objects/laser.tscn")
 @export var shoot_cooldown: float = 0.2
-@export var vanish_offset: Vector2 = Vector2(0, -160) # Vanishing point in front and slightly above player
+@export var vanish_offset: Vector2 = Vector2(0, -160) # Titik lenyap tembakan
 var can_shoot: bool = true
 var shoot_timer: float = 0.0
 
@@ -21,12 +21,58 @@ var bank_angle: float = 0.0
 var pitch_angle: float = 0.0
 var anim_pulse: float = 0.0
 
+# Hit & invincibility
+var is_dead: bool = false
+var is_invincible: bool = false
+var invincible_duration: float = 1.0
+
+# Speed multiplier visual
+var speed_multiplier: float = 1.0
+
+# Laser SFX
+var _laser_sfx: AudioStreamPlayer
+
 func _ready() -> void:
+	add_to_group("player")
+	
 	if position != Vector2.ZERO:
 		grid_center = position
 		
 	visual_pos = get_cell_position(grid_col, grid_row)
 	position = visual_pos
+	
+	# Setup audio
+	_laser_sfx = AudioStreamPlayer.new()
+	_laser_sfx.bus = &"Master"
+	_laser_sfx.volume_db = -12.0
+	add_child(_laser_sfx)
+	_create_laser_sound()
+
+func _create_laser_sound() -> void:
+	# Generate audio procedural
+	var sample_rate := 22050
+	var duration_sec := 0.08
+	var num_samples := int(sample_rate * duration_sec)
+	
+	var audio := AudioStreamWAV.new()
+	audio.format = AudioStreamWAV.FORMAT_8_BITS
+	audio.mix_rate = sample_rate
+	audio.stereo = false
+	
+	var data := PackedByteArray()
+	data.resize(num_samples)
+	
+	for i in range(num_samples):
+		var t := float(i) / sample_rate
+		var envelope := 1.0 - (float(i) / num_samples) # Fade out
+		var freq1 := 1800.0 - (t * 12000.0) # Pitch turun
+		var sample := sin(t * freq1 * TAU) * envelope
+		sample += (randf() * 2.0 - 1.0) * 0.15 * envelope # Noise
+		var byte_val := int(clamp(sample * 80.0 + 128.0, 0, 255))
+		data[i] = byte_val
+	
+	audio.data = data
+	_laser_sfx.stream = audio
 
 func get_cell_position(col: int, row: int) -> Vector2:
 	var col_offset = float(clampi(col, 0, 2) - 1)
@@ -34,6 +80,9 @@ func get_cell_position(col: int, row: int) -> Vector2:
 	return grid_center + Vector2(col_offset * cell_width, row_offset * cell_height)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_dead:
+		return
+		
 	if event.is_action_pressed("ui_left") or event.is_action_pressed("move_left"):
 		move_grid(-1, 0)
 	elif event.is_action_pressed("ui_right") or event.is_action_pressed("move_right"):
@@ -66,6 +115,10 @@ func shoot_laser() -> void:
 	can_shoot = false
 	shoot_timer = shoot_cooldown
 	
+	# Play SFX
+	if _laser_sfx and _laser_sfx.stream:
+		_laser_sfx.play()
+	
 	var target_point = global_position + vanish_offset
 	var offsets = [Vector2(-35, -10), Vector2(35, -10)]
 	var current_scene = get_tree().current_scene
@@ -75,7 +128,6 @@ func shoot_laser() -> void:
 		var spawn_pos = global_position + offset
 		if current_scene:
 			current_scene.add_child(laser)
-			laser_sound.play()
 		elif get_parent():
 			get_parent().add_child(laser)
 			
@@ -83,6 +135,34 @@ func shoot_laser() -> void:
 			laser.setup(spawn_pos, target_point)
 		else:
 			laser.global_position = spawn_pos
+
+func take_hit() -> void:
+	if is_dead or is_invincible:
+		return
+	
+	_flash_red()
+	player_hit.emit() # Notif GameplayManager
+	
+	# Invincibility frame
+	is_invincible = true
+	get_tree().create_timer(invincible_duration).timeout.connect(func(): is_invincible = false)
+
+func _flash_red() -> void:
+	var sprite = get_node_or_null("Player_animation")
+	if sprite == null:
+		modulate = Color(1, 0.2, 0.2, 1)
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", Color.WHITE, 0.3)
+		return
+	
+	# Animasi flash merah
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 0.05)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+	tween.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 0.05)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+	tween.tween_property(self, "modulate", Color(1, 0.3, 0.3, 0.7), 0.05)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.15)
 
 func _process(delta: float) -> void:
 	if not can_shoot:

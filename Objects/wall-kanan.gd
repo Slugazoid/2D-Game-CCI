@@ -19,7 +19,9 @@ func _ready() -> void:
 	top_level = false 
 
 func _process(delta: float) -> void:
-	progress += speed * delta
+	# Ambil speed multiplier dari player (jika ada)
+	var speed_mult := _get_speed_multiplier()
+	progress += speed * speed_mult * delta
 	
 	if progress >= 1.0:
 		progress = 0.0
@@ -30,3 +32,9 @@ func _process(delta: float) -> void:
 	scale = min_scale.lerp(max_scale, perspective_curve)
 	
 	z_index = int(lerp(float(min_z_index), float(max_z_index), progress))
+
+func _get_speed_multiplier() -> float:
+	var players = get_tree().get_nodes_in_group("player")
+	if players.size() > 0 and players[0] is PlayerShip:
+		return players[0].speed_multiplier
+	return 1.0

@@ -45,4 +45,11 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area == self:
 		return
+
+	# TargetShip dideteksi lewat Area2D anak (mis. "HitArea") yang jadi
+	# child langsung dari node TargetShip -> parent-nya adalah TargetShip.
+	var target := area.get_parent()
+	if target is TargetShip:
+		target.take_hit()
+
 	queue_free()

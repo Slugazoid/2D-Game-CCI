@@ -2,9 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://t5mqu3bpoh5u" path="res://Assets/BG/Canyon-frame0.png" id="1_m6dl5"]
 [ext_resource type="Texture2D" uid="uid://debyfl43i1c03" path="res://Assets/Screenshot 2026-08-12 113019.png" id="1_vy64j"]
-[ext_resource type="Script" uid="uid://b0k51rritdson" path="res://Scripts/wall-kiri.gd" id="2_vgsla"]
+[ext_resource type="Script" uid="uid://b0k51rritdson" path="res://scripts/wall-kiri.gd" id="2_vgsla"]
 [ext_resource type="Texture2D" uid="uid://dqx3tjgep88l0" path="res://Assets/BG/Sky-spritesheet.png" id="3_vgsla"]
 [ext_resource type="Script" uid="uid://ck14775cuuipr" path="res://Objects/wall-kanan.gd" id="4_q60mq"]
+[ext_resource type="Texture2D" uid="uid://cjxua7c6ckma2" path="res://Assets/BG/Waterfall-spritesheet.png" id="5_waterfall"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vy64j"]
 atlas = ExtResource("3_vgsla")
@@ -168,6 +169,182 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf0"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf1"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf2"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf3"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf4"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(0, 360, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf5"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(640, 360, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf6"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1280, 360, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf7"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1920, 360, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf8"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(0, 720, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf9"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(640, 720, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf10"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1280, 720, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf11"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1920, 720, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf12"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(0, 1080, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf13"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(640, 1080, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf14"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1280, 1080, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf15"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1920, 1080, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf16"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(0, 1440, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf17"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(640, 1440, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf18"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1280, 1440, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf19"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1920, 1440, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf20"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(0, 1800, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf21"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(640, 1800, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf22"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1280, 1800, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf23"]
+atlas = ExtResource("5_waterfall")
+region = Rect2(1920, 1800, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_waterfall"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf19")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf23")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Bg" type="Node2D" unique_id=355612197]
 
 [node name="Screenshot20260812113019" type="Sprite2D" parent="." unique_id=130935351]
@@ -181,6 +358,13 @@ position = Vector2(640.00006, 228)
 scale = Vector2(2.0000002, 2)
 sprite_frames = SubResource("SpriteFrames_slvoo")
 frame_progress = 0.8297556
+
+[node name="Waterfall" type="AnimatedSprite2D" parent="." unique_id=-394855052]
+visible = false
+position = Vector2(640, 250)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_waterfall")
+autoplay = "default"
 
 [node name="CanyonFrame10" type="Sprite2D" parent="." unique_id=350603016]
 position = Vector2(1030, 360.0001)

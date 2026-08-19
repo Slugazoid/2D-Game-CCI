@@ -1,5 +1,4 @@
 extends Button
-## Tombol Back (panah kiri), digambar manual pake _draw().
 
 @export var icon_color: Color = Color(0.92, 0.92, 0.96)
 @export var bg_color: Color = Color(0.08, 0.08, 0.1, 0.55)

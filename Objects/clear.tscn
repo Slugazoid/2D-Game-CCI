@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b0qsw00klxike"]
+
+[ext_resource type="Script" uid="uid://dp2or1i35xwd8" path="res://Objects/clear.gd" id="1_hte2u"]
+[ext_resource type="AudioStream" uid="uid://b7o0sh2tim2g8" path="res://audio/gameover.mp3" id="2_5cumc"]
+[ext_resource type="Texture2D" uid="uid://b5c60urfnh1ng" path="res://Assets/Button/PNG/Yes_Button.png" id="3_x485f"]
+[ext_resource type="Texture2D" uid="uid://dwtp74r1tojdg" path="res://Assets/Button/PNG/No_Button.png" id="4_oyy3u"]
+
+[node name="Node2D" type="Node2D" unique_id=756264685]
+script = ExtResource("1_hte2u")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1373400985]
+z_index = 200
+offset_left = 8.0
+offset_right = 1289.0
+offset_bottom = 722.0
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="header" type="Label" parent="." unique_id=1596998724]
+z_index = 200
+offset_left = 336.0
+offset_top = 176.0
+offset_right = 953.0
+offset_bottom = 313.0
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 100
+text = "GAME CLEAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1993262848]
+z_index = 200
+offset_left = 544.0
+offset_top = 368.0
+offset_right = 742.0
+offset_bottom = 423.0
+theme_override_font_sizes/font_size = 40
+text = "Try Again?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="." unique_id=1337043935]
+stream = ExtResource("2_5cumc")
+
+[node name="YesButton" type="TextureButton" parent="." unique_id=1006372760]
+z_index = 200
+offset_left = 384.0
+offset_top = 400.0
+offset_right = 600.0
+offset_bottom = 616.0
+texture_normal = ExtResource("3_x485f")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NoButton" type="TextureButton" parent="." unique_id=1812874526]
+z_index = 200
+offset_left = 776.0
+offset_top = 400.0
+offset_right = 992.0
+offset_bottom = 616.0
+texture_normal = ExtResource("4_oyy3u")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label2" type="Label" parent="." unique_id=1446833456]
+z_index = 200
+offset_left = 504.0
+offset_top = 312.0
+offset_right = 785.0
+offset_bottom = 354.0
+theme_override_font_sizes/font_size = 30
+text = "Clear Time 00:00:00"
+
+[connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="focus_entered" from="NoButton" to="." method="_on_no_button_focus_entered"]
+[connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

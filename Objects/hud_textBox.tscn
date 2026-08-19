@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://c4iw4crvbe6kf"]
 
 [ext_resource type="Texture2D" uid="uid://dcx7rx2t1yk7t" path="res://Assets/textBox.png" id="1_8hfbq"]
-[ext_resource type="Texture2D" uid="uid://dr025ey6mimbp" path="res://icon.svg" id="2_6o6m8"]
-[ext_resource type="Script" uid="uid://2jv26fibt6w8" path="res://Scripts/hud_text_box.gd" id="3_hudscript"]
+[ext_resource type="Texture2D" uid="uid://b76wydcgvoe3m" path="res://Assets/Robin_Cunning.png" id="3_2tri4"]
+[ext_resource type="Script" uid="uid://2jv26fibt6w8" path="res://scripts/hud_text_box.gd" id="3_hudscript"]
 
 [sub_resource type="SystemFont" id="SystemFont_18ief"]
 font_names = PackedStringArray("Bandung")
 subpixel_positioning = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6o6m8"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [node name="HudTextBox" type="CanvasLayer" unique_id=1301680642]
 script = ExtResource("3_hudscript")
@@ -33,9 +36,15 @@ autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Icon" type="Sprite2D" parent="Content" unique_id=1437680589]
+visible = false
 position = Vector2(180, 573)
 scale = Vector2(1.4736326, 1.4736326)
-texture = ExtResource("2_6o6m8")
+texture = SubResource("CompressedTexture2D_6o6m8")
+
+[node name="RobinCunning" type="Sprite2D" parent="Content" unique_id=1261810395]
+position = Vector2(179.00002, 660)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_2tri4")
 
 [node name="TestTimer" type="Timer" parent="." unique_id=456123789]
 wait_time = 5.0

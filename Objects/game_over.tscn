@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b80rmk5ah36qm"]
+
+[ext_resource type="AudioStream" uid="uid://b7o0sh2tim2g8" path="res://audio/gameover.mp3" id="1_4cyts"]
+[ext_resource type="Script" uid="uid://hv7edqx5b7td" path="res://scripts/game_over.gd" id="1_bbw6o"]
+[ext_resource type="Texture2D" uid="uid://b5c60urfnh1ng" path="res://Assets/Button/PNG/Yes_Button.png" id="3_svpqe"]
+[ext_resource type="Texture2D" uid="uid://dwtp74r1tojdg" path="res://Assets/Button/PNG/No_Button.png" id="4_vvl5s"]
+
+[node name="Node2D" type="Node2D" unique_id=756264685]
+script = ExtResource("1_bbw6o")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1373400985]
+z_index = 200
+offset_left = 8.0
+offset_right = 1289.0
+offset_bottom = 722.0
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="header" type="Label" parent="." unique_id=1596998724]
+z_index = 200
+offset_left = 352.0
+offset_top = 216.0
+offset_right = 926.0
+offset_bottom = 353.0
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1993262848]
+z_index = 200
+offset_left = 544.0
+offset_top = 360.0
+offset_right = 738.0
+offset_bottom = 415.0
+theme_override_font_sizes/font_size = 40
+text = "Continue?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="." unique_id=1337043935]
+stream = ExtResource("1_4cyts")
+
+[node name="YesButton" type="TextureButton" parent="." unique_id=1006372760]
+z_index = 200
+offset_left = 384.0
+offset_top = 408.0
+offset_right = 600.0
+offset_bottom = 624.0
+texture_normal = ExtResource("3_svpqe")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NoButton" type="TextureButton" parent="." unique_id=1812874526]
+z_index = 200
+offset_left = 776.0
+offset_top = 408.0
+offset_right = 992.0
+offset_bottom = 624.0
+texture_normal = ExtResource("4_vvl5s")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="focus_entered" from="NoButton" to="." method="_on_no_button_focus_entered"]
+[connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]
