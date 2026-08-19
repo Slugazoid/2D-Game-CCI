@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://c4iw4crvbe6kf" path="res://Objects/hud_textBox.tscn" id="4_hud"]
 [ext_resource type="Script" uid="uid://dgh8mro80nxhm" path="res://scripts/world1.gd" id="5_world1"]
 [ext_resource type="Script" uid="uid://ba7e5nt3l417d" path="res://scripts/obstacle_cliff_spawner.gd" id="7_cliff_spawner"]
-[ext_resource type="Texture2D" uid="uid://eqmkf28xm4upz" path="res://Assets/BG/tebing sisi kiri.png" id="8_tebing_kiri"]
-[ext_resource type="Texture2D" uid="uid://1ne13tnhvrzyo" path="res://Assets/BG/tebing 1x2 sisi kanan.png" id="9_tebing_kanan"]
-[ext_resource type="Texture2D" uid="uid://m8w3d6nos5nv2" path="res://Assets/BG/tebing tengah.png" id="10_tebing_tengah"]
-[ext_resource type="Texture2D" uid="uid://dhs8vfovtx5nd" path="res://Assets/BG/rintangan tebing 2 sisi-spritesheet.png" id="11_rintangan_2sisi"]
+[ext_resource type="Texture2D" uid="uid://u7ot1co2wyx8" path="res://Assets/BG/tebing sisi kiri.png" id="8_tebing_kiri"]
+[ext_resource type="Texture2D" uid="uid://dgxtkh4yikrf3" path="res://Assets/BG/tebing 1x2 sisi kanan.png" id="9_tebing_kanan"]
+[ext_resource type="Texture2D" uid="uid://bnphl0vw4j1mr" path="res://Assets/BG/tebing tengah.png" id="10_tebing_tengah"]
+[ext_resource type="Texture2D" uid="uid://cmd07ral0i8sq" path="res://Assets/BG/ssCliff-clean.png" id="11_ssCliff"]
+[ext_resource type="Texture2D" uid="uid://cogycogieta84" path="res://Assets/BG/ssCliff-clean-right.png" id="12_ssCliff_right"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hp"]
 font_size = 28
@@ -30,10 +31,11 @@ texture = ExtResource("3_321yq")
 [node name="ObstacleCliffSpawner" type="Node2D" parent="." unique_id=2043206313]
 z_index = 1
 script = ExtResource("7_cliff_spawner")
-left_texture = ExtResource("8_tebing_kiri")
-right_texture = ExtResource("9_tebing_kanan")
+left_texture = ExtResource("11_ssCliff")
+right_texture = ExtResource("12_ssCliff_right")
 center_texture = ExtResource("10_tebing_tengah")
-both_sides_texture = ExtResource("11_rintangan_2sisi")
+both_left_texture = ExtResource("8_tebing_kiri")
+both_right_texture = ExtResource("9_tebing_kanan")
 
 [node name="Player" parent="." unique_id=2038570811 instance=ExtResource("2_4hxcq")]
 z_index = 2
