@@ -52,7 +52,7 @@ func _ready() -> void:
 
 func _init_hud() -> void:
 	if distance_label:
-		distance_label.text = "Jarak: 0/9000"
+		distance_label.text = "Range: 0/9000"
 	if speed_label:
 		speed_label.text = "Speed: 50 m/s"
 	if crash_label:
@@ -61,7 +61,7 @@ func _init_hud() -> void:
 # Callback manager
 func _on_distance_changed(distance: float, total: float) -> void:
 	if distance_label:
-		distance_label.text = "Jarak: %d/%d" % [int(distance), int(total)]
+		distance_label.text = "Range: %d/%d" % [int(distance), int(total)]
 
 	# Update posisi/skala TargetShip selama final stretch (sisa jarak <= 1000m)
 	if target_ship and gameplay_manager:

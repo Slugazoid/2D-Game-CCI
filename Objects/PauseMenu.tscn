@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://vgtv7yx3yqnt"]
+
+[ext_resource type="Script" uid="uid://cgdneohjatc6l" path="res://scripts/pause_menu.gd" id="1_pause"]
+[ext_resource type="Script" uid="uid://cvr0bwlttxgff" path="res://scripts/ui_button_hover.gd" id="2_hover"]
+[ext_resource type="Texture2D" uid="uid://8lm7esltlrgr" path="res://Assets/Button/PNG/Resume_Button.png" id="3_resume_tex"]
+[ext_resource type="Texture2D" uid="uid://ci8tt3i83ff44" path="res://Assets/Button/PNG/Base_Button.png" id="4_base_tex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.09, 0.07, 0.1, 0.92)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.55, 0.34, 0.13, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=175013297]
+process_mode = 3
+layer = 20
+script = ExtResource("1_pause")
+
+[node name="DimBg" type="ColorRect" parent="." unique_id=980332655]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Root" type="Control" parent="." unique_id=895874295]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelBg" type="Panel" parent="Root" unique_id=522332426]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 170.0
+offset_right = 870.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Title" type="Label" parent="Root/PanelBg" unique_id=1161158482]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 460.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="TextureButton" parent="Root/PanelBg" unique_id=105582846]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 129.0
+offset_right = 365.0
+offset_bottom = 229.0
+focus_mode = 0
+texture_normal = ExtResource("3_resume_tex")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_hover")
+
+[node name="MainMenuButton" type="TextureButton" parent="Root/PanelBg" unique_id=345316462]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 211.0
+offset_right = 380.0
+offset_bottom = 311.0
+focus_mode = 0
+texture_normal = ExtResource("4_base_tex")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_hover")
+
+[node name="Label" type="Label" parent="Root/PanelBg/MainMenuButton" unique_id=1219950950]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.15, 0.08, 0.03, 1)
+theme_override_font_sizes/font_size = 15
+text = "MAIN MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
