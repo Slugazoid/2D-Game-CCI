@@ -3,7 +3,7 @@
 **Tim: Ini Namanya Apa?**
 
 ## Tentang Game BUMP DABOUNTY
->Permainan pengejaran dimana player yang mengendarai pesawat harus sebisa mungkin menghindari semua tantangan yang datang mengarahnya untuk mengejar target.
+>Permainan pengejaran didalam grid 3x3 dimana player yang mengendarai pesawat harus sebisa mungkin menghindari semua tantangan yang datang mengarahnya untuk mengejar target.
 >Dengan begitu, ketika player sudah memasuki jarak pengaktifan finisher maka player baru bisa memenangkan permainan nya  
 
 ### Anggota Tim
