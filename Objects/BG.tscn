@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqx3tjgep88l0" path="res://Assets/BG/Sky-spritesheet.png" id="3_vgsla"]
 [ext_resource type="Script" uid="uid://ck14775cuuipr" path="res://Objects/wall-kanan.gd" id="4_q60mq"]
 [ext_resource type="Texture2D" uid="uid://cjxua7c6ckma2" path="res://Assets/BG/Waterfall-spritesheet.png" id="5_waterfall"]
+[ext_resource type="Texture2D" uid="uid://dtio8inedfwry" path="res://Assets/BG/mid_BG_canyon-spritesheet.png" id="6_midcanyon"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vy64j"]
 atlas = ExtResource("3_vgsla")
@@ -345,6 +346,63 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc0"]
+atlas = ExtResource("6_midcanyon")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc1"]
+atlas = ExtResource("6_midcanyon")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc2"]
+atlas = ExtResource("6_midcanyon")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc3"]
+atlas = ExtResource("6_midcanyon")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc4"]
+atlas = ExtResource("6_midcanyon")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc5"]
+atlas = ExtResource("6_midcanyon")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc6"]
+atlas = ExtResource("6_midcanyon")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_midcanyon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Bg" type="Node2D" unique_id=355612197]
 
 [node name="Screenshot20260812113019" type="Sprite2D" parent="." unique_id=130935351]
@@ -364,6 +422,12 @@ visible = false
 position = Vector2(640, 250)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_waterfall")
+autoplay = "default"
+
+[node name="GroundCanyon" type="AnimatedSprite2D" parent="." unique_id=770011234]
+position = Vector2(638, 532)
+scale = Vector2(1.5093751, 1.0472223)
+sprite_frames = SubResource("SpriteFrames_midcanyon")
 autoplay = "default"
 
 [node name="CanyonFrame10" type="Sprite2D" parent="." unique_id=350603016]
