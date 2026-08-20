@@ -18,7 +18,9 @@ const TOTAL_DISTANCE: float = START_GAP - ACTIVATION_RADIUS # 9000m yang perlu d
 const FINAL_STRETCH_REMAINING: float = 1000.0 # Sisa jarak saat target muncul & obstacle dikurangi
 
 const MAX_GAME_TIME: float = 300.0 # Batas waktu (5 menit) = "bensin habis"
-const MAX_COLLISIONS: int = 10 # Nyawa habis setelah 10x nabrak
+# Jumlah maksimum nabrak sekarang beda-beda per difficulty (diambil dari
+# DifficultyManager pas start_game()) -> bukan const tetap lagi.
+var max_collisions: int = 10
 
 const TARGET_SPEED: float = 100.0 # Kecepatan pesawat target (konstan)
 const STARTING_SPEED: float = 50.0 # Kecepatan awal & reset saat nabrak
@@ -64,6 +66,9 @@ func start_game() -> void:
 	is_active = true
 	_final_stretch_triggered = false
 	_zone_timer = 0.0
+
+	# Ambil batas nabrak sesuai difficulty yang dipilih player di DifficultySelect.
+	max_collisions = DifficultyManager.get_max_collisions()
 
 	_update_player_speed_multiplier()
 
@@ -135,14 +140,14 @@ func on_player_hit() -> void:
 	collision_count += 1
 
 	# Emit update
-	collision_happened.emit(collision_count, MAX_COLLISIONS)
+	collision_happened.emit(collision_count, max_collisions)
 	distance_changed.emit(distance_traveled, TOTAL_DISTANCE)
 	speed_changed.emit(current_speed, TOP_SPEED)
 
 	_update_player_speed_multiplier()
 
 	# Nyawa habis (10x nabrak) -> kalah
-	if collision_count >= MAX_COLLISIONS:
+	if collision_count >= max_collisions:
 		_trigger_game_lost("no_lives")
 
 func _update_player_speed_multiplier() -> void:

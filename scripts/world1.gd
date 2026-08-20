@@ -56,7 +56,7 @@ func _init_hud() -> void:
 	if speed_label:
 		speed_label.text = "Speed: 50 m/s"
 	if crash_label:
-		crash_label.text = "Crash: 0/10"
+		crash_label.text = "Crash: 0/%d" % DifficultyManager.get_max_collisions()
 
 # Callback manager
 func _on_distance_changed(distance: float, total: float) -> void:
