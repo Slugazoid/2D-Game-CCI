@@ -9,5 +9,4 @@
 | • Muhammad Ghizar Al Hasan<br>• Ali Ataurrahman | Game Designer |
 | • Raihan Alvian<br>• Dewa Gede Reksa Parama Aditya<br>• Albert Sebastian Tobing | Programmer |
 | • Rayyan Muhammad Fajar<br>• Nauvalky Kusfito Guci | Game Artist |
-| • Muhammad Ghizar Al Hasan<br>• Ali Ataurrahman | UI/UX Designer |
 | • Ali Ataurrahman | Sound Designer |
