@@ -1,6 +1,6 @@
 extends Node2D
 
-const SETTINGS_SCENE := "res://Objects/SettingsMaenu.tscn"
+const SETTINGS_SCENE := "res://Objects/SettingsMenu.tscn"
 const GAMEPLAY_SCENE := "res://Worlds/World1.tscn"
 const MAIN_MUSIC := "res://audio/main_music.tscn"
 

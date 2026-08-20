@@ -151,18 +151,18 @@ func _flash_red() -> void:
 	var sprite = get_node_or_null("Player_animation")
 	if sprite == null:
 		modulate = Color(1, 0.2, 0.2, 1)
-		var tween = create_tween()
-		tween.tween_property(self, "modulate", Color.WHITE, 0.3)
+		var tween_solo = create_tween()
+		tween_solo.tween_property(self, "modulate", Color.WHITE, 0.3)
 		return
 	
 	# Animasi flash merah
-	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 0.05)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-	tween.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 0.05)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
-	tween.tween_property(self, "modulate", Color(1, 0.3, 0.3, 0.7), 0.05)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.15)
+	var tween_flash = create_tween()
+	tween_flash.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 0.05)
+	tween_flash.tween_property(self, "modulate", Color.WHITE, 0.1)
+	tween_flash.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 0.05)
+	tween_flash.tween_property(self, "modulate", Color.WHITE, 0.1)
+	tween_flash.tween_property(self, "modulate", Color(1, 0.3, 0.3, 0.7), 0.05)
+	tween_flash.tween_property(self, "modulate", Color.WHITE, 0.15)
 
 func _process(delta: float) -> void:
 	if not can_shoot:

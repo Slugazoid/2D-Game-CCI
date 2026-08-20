@@ -89,7 +89,7 @@ func _play_shake(delay: float = 0.0) -> void:
 
 	for i in range(steps):
 		var decay: float = 1.0 - (float(i) / float(steps))
-		var offset := Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * shake_strength * decay
-		shake_tween.tween_property(content, "position", _content_base_position + offset, step_time)
+		var shake_offset := Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * shake_strength * decay
+		shake_tween.tween_property(content, "position", _content_base_position + shake_offset, step_time)
 
 	shake_tween.tween_property(content, "position", _content_base_position, step_time)

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://hv7edqx5b7td" path="res://scripts/game_over.gd" id="1_bbw6o"]
 [ext_resource type="Texture2D" uid="uid://b5c60urfnh1ng" path="res://Assets/Button/PNG/Yes_Button.png" id="3_svpqe"]
 [ext_resource type="Texture2D" uid="uid://dwtp74r1tojdg" path="res://Assets/Button/PNG/No_Button.png" id="4_vvl5s"]
+[ext_resource type="Script" uid="uid://cvr0bwlttxgff" path="res://scripts/ui_button_hover.gd" id="5_hover"]
 
 [node name="Node2D" type="Node2D" unique_id=756264685]
 script = ExtResource("1_bbw6o")
@@ -51,6 +52,7 @@ offset_bottom = 624.0
 texture_normal = ExtResource("3_svpqe")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_hover")
 
 [node name="NoButton" type="TextureButton" parent="." unique_id=1812874526]
 z_index = 200
@@ -61,6 +63,7 @@ offset_bottom = 624.0
 texture_normal = ExtResource("4_vvl5s")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_hover")
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="focus_entered" from="NoButton" to="." method="_on_no_button_focus_entered"]

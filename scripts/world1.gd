@@ -109,9 +109,9 @@ func _on_game_lost(reason: String) -> void:
 	var message := "Game Over!"
 	match reason:
 		"no_time":
-			message = "Bensin habis! Game Over!"
+			message = "Bensin habis! Misi Gagal!"
 		"no_lives":
-			message = "Pesawat rusak parah! Game Over!"
+			message = "Pesawat rusak parah! Misi Gagal!"
 	
 	if hud_text_box:
 		hud_text_box.show_message(message, 3.0)

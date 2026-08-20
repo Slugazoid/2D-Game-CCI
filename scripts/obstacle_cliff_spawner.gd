@@ -5,18 +5,19 @@ extends Node2D
 ## - "left"   : nutup kolom kiri (0) aja      -> ssCliff (dinding penuh)
 ## - "right"  : nutup kolom kanan (2) aja     -> ssCliff di-mirror (dinding penuh)
 ## - "center" : nutup kolom tengah (1) aja    -> tebing tengah
-## - "both"   : nutup kolom kiri & kanan (0 & 2), tengah selalu aman
-##              -> 2 potong batu kecil (tebing sisi kiri di kolom kiri, tebing 1x2 sisi
-##                 kanan di kolom kanan), masing-masing tampil di tempatnya sendiri.
+## - "both"   : nutup kolom tengah (1) aja juga, tapi visualnya GANTIAN antara
+##              2 batu kecil (both_left_texture / both_right_texture) -> tiap kali
+##              pola ini spawn, cuma SATU batu yang muncul (gantian tiap spawn),
+##              bukan 2 batu barengan kayak sebelumnya.
 ##
 ## Aturan fair-play: kombinasi obstacle yang lagi aktif bareng GAK PERNAH nutup ke-3 kolom
 ## sekaligus, jadi player selalu punya minimal 1 kolom aman buat kabur.
 ##
 ## Setiap pola bisa punya 1 atau lebih "parts" (potongan visual) yang masing-masing punya
-## titik lenyap/akhir/skala/texture sendiri tapi jalan di progress yang sama. Pola "left",
-## "right", "center" cuma 1 part; pola "both" ada 2 part (kiri & kanan). Semua data ini
-## digabung jadi SATU tabel (_pattern_table, dibangun di _ready) biar gampang di-tuning &
-## gak ada logika yang kececer di banyak fungsi terpisah.
+## titik lenyap/akhir/skala/texture sendiri tapi jalan di progress yang sama. Semua pola
+## sekarang cuma 1 part (termasuk "both"). Semua data ini digabung jadi SATU tabel
+## (_pattern_table, dibangun di _ready) biar gampang di-tuning & gak ada logika yang
+## kececer di banyak fungsi terpisah.
 
 # ---------------------------------------------------------------------------
 # Texture per pola obstacle
@@ -61,6 +62,15 @@ var _final_stretch_seq_index: int = 0
 @export var end_center: Vector2 = Vector2(640, 354)
 @export var end_right: Vector2 = Vector2(880, 354)
 
+# ---------------------------------------------------------------------------
+# Posisi manual buat pola "both" (sekarang muncul di TENGAH, gantian 1 batu
+# per spawn). Dipisah dari vanishing_point_center_x/end_center pola "center"
+# biar bisa digeser sendiri tanpa ikut mindahin obstacle tebing tengah biasa.
+# ---------------------------------------------------------------------------
+@export_group("Posisi Manual - Pola Both")
+@export var both_vanishing_center_x: float = 640.0
+@export var both_end_center: Vector2 = Vector2(640, 354)
+
 @export var min_scale: Vector2 = Vector2(0.05, 0.05)
 @export var curve_power: float = 2.0
 
@@ -73,11 +83,10 @@ var _final_stretch_seq_index: int = 0
 @export var both_right_max_scale: Vector2 = Vector2(2.8, 2.8)  # batu kecil, jadi skalanya gede
 
 # Bobot spawn tiap pola (makin gede makin sering muncul).
-# "both" dibikin paling jarang karena paling nge-batesin ruang gerak player.
 @export var weight_left: float = 30.0
 @export var weight_right: float = 30.0
 @export var weight_center: float = 25.0
-@export var weight_both_sides: float = 15.0
+@export var weight_both_sides: float = 15.0 # pola "both" (batu tengah gantian)
 
 # Threshold tabrakan
 @export var collision_progress_min: float = 0.85
@@ -97,6 +106,15 @@ var _final_stretch_seq_index: int = 0
 @export var telegraph_pulse_speed: float = 9.0 # kecepatan kedip pas udah deket
 @export var telegraph_outline_px: float = 1.5 # tebal outline dalam ruang texture (px sebelum di-scale)
 
+# ---------------------------------------------------------------------------
+# Destructible - cuma 2 batu pola "both" yang bisa dihancurin laser player
+# ---------------------------------------------------------------------------
+@export_group("Destructible (Pola Both)")
+@export var both_destructible: bool = true
+@export var both_hitbox_radius: float = 50.0 # radius hitbox dasar (px), ikut membesar sesuai skala batu
+
+const ObstacleHitboxScript := preload("res://scripts/obstacle_hitbox.gd")
+
 const OUTLINE_DIRECTIONS := [
 	Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1),
 	Vector2(0.7071, 0.7071), Vector2(-0.7071, 0.7071),
@@ -107,12 +125,13 @@ const PATTERN_COLUMNS := {
 	"left": [0],
 	"right": [2],
 	"center": [1],
-	"both": [0, 2],
+	"both": [1], # sekarang di tengah, sama kayak "center" tapi visual gantian 2 batu
 }
 
 var spawn_timer: float = 0.0
 var active_cliffs: Array = []
 var _last_pattern: String = ""
+var _both_alt_toggle: bool = false # nentuin batu mana (kiri/kanan) yang muncul giliran ini
 
 ## Tabel tunggal berisi semua data per-pola (dibangun sekali di _ready dari @export vars di
 ## atas). Sesudah ini, seluruh fungsi lain tinggal query ke _pattern_table, gak perlu lagi ada
@@ -169,16 +188,10 @@ func _build_pattern_table() -> void:
 			"weight": weight_both_sides,
 			"parts": [
 				{
-					"vanish": Vector2(vanishing_point_left_x, vanishing_point_y),
-					"end": end_left,
-					"max_scale": both_left_max_scale,
-					"texture": both_left_texture,
-				},
-				{
-					"vanish": Vector2(vanishing_point_right_x, vanishing_point_y),
-					"end": end_right,
-					"max_scale": both_right_max_scale,
-					"texture": both_right_texture,
+					"vanish": Vector2(both_vanishing_center_x, vanishing_point_y),
+					"end": both_end_center,
+					"max_scale": both_left_max_scale, # fallback; di-override per-spawn di _spawn_cliff()
+					"texture": both_left_texture,      # fallback; di-override per-spawn di _spawn_cliff()
 				},
 			],
 		},
@@ -203,6 +216,11 @@ func set_final_stretch(active: bool) -> void:
 	_reset_spawn_timer() # langsung apply interval baru, gak nunggu timer abis dulu
 
 func _process(delta: float) -> void:
+	# Rebuild tiap frame (murah, cuma dictionary kecil) supaya kalau lu ubah
+	# both_vanishing_center_x/both_end_center di Inspector pas game jalan, obstacle
+	# yang lagi aktif langsung ngikut posisi barunya (buat tuning manual).
+	_build_pattern_table()
+
 	var speed_mult := _get_speed_multiplier()
 
 	if not (_in_final_stretch and final_stretch_stop_spawning):
@@ -226,15 +244,31 @@ func _process(delta: float) -> void:
 		if parts.is_empty():
 			continue
 
+		var scale_overrides: Array = cliff_data.get("part_max_scale_override", [])
 		var part_states: Array = []
-		for part in parts:
+		for i in range(parts.size()):
+			var part: Dictionary = parts[i]
+			var max_scale: Vector2 = part.max_scale
+			if i < scale_overrides.size() and scale_overrides[i] != null:
+				max_scale = scale_overrides[i]
 			part_states.append({
 				"position": part.vanish.lerp(part.end, perspective_curve),
-				"scale": min_scale.lerp(part.max_scale, perspective_curve),
+				"scale": min_scale.lerp(max_scale, perspective_curve),
 			})
 
 		cliff_data.part_states = part_states
 		cliff_data.perspective = perspective_curve
+
+		# Ikutin posisi & skala hitbox ke gambar batu yang lagi digambar tiap frame.
+		var hitboxes: Array = cliff_data.get("hitboxes", [])
+		for i in range(hitboxes.size()):
+			var hitbox = hitboxes[i]
+			if not is_instance_valid(hitbox):
+				continue
+			if i >= part_states.size():
+				continue
+			hitbox.position = part_states[i].position
+			hitbox.scale = part_states[i].scale
 
 		# Cek tabrakan
 		if p >= collision_progress_min and p <= collision_progress_max and not cliff_data.hit:
@@ -242,6 +276,7 @@ func _process(delta: float) -> void:
 
 	# Hapus obstacle lewat
 	for cliff_data in cliffs_to_remove:
+		_free_hitboxes(cliff_data)
 		active_cliffs.erase(cliff_data)
 
 	queue_redraw()
@@ -251,7 +286,12 @@ func _get_blocked_columns() -> Array:
 	var blocked: Array = []
 	for cliff_data in active_cliffs:
 		if cliff_data.progress < 1.0:
-			for col in PATTERN_COLUMNS.get(cliff_data.pattern, []):
+			var columns: Array = PATTERN_COLUMNS.get(cliff_data.pattern, [])
+			var destroyed: Array = cliff_data.get("part_destroyed", [])
+			for i in range(columns.size()):
+				if i < destroyed.size() and destroyed[i]:
+					continue # batu ini udah hancur, kolomnya gak lagi keblok
+				var col = columns[i]
 				if col not in blocked:
 					blocked.append(col)
 	return blocked
@@ -271,8 +311,12 @@ func get_upcoming_threats(min_progress: float = 0.15) -> Array:
 		var p: float = cliff_data.progress
 		if p < min_progress or p >= 1.0:
 			continue
-		for col in PATTERN_COLUMNS.get(cliff_data.pattern, []):
-			threats.append({"col": col, "progress": p})
+		var columns: Array = PATTERN_COLUMNS.get(cliff_data.pattern, [])
+		var destroyed: Array = cliff_data.get("part_destroyed", [])
+		for i in range(columns.size()):
+			if i < destroyed.size() and destroyed[i]:
+				continue # udah dihancurin laser, bukan ancaman lagi
+			threats.append({"col": columns[i], "progress": p})
 	return threats
 
 ## Pilih pola obstacle baru secara random-berbobot, tapi SKIP pola apa pun yang kalau
@@ -353,26 +397,89 @@ func _spawn_cliff() -> void:
 	if pattern == "":
 		return # gak ada pola yang aman buat di-spawn sekarang, coba lagi timer berikutnya
 
+	var part_count: int = _pattern_table.get(pattern, {}).get("parts", []).size()
 	var cliff_data = {
 		"pattern": pattern,
 		"progress": 0.0,
 		"part_states": [],
 		"perspective": 0.0,
 		"hit": false,
+		"part_destroyed": [],
+		"hitboxes": [],
+		"part_texture_override": [],
+		"part_max_scale_override": [],
 	}
+	for i in range(part_count):
+		cliff_data.part_destroyed.append(false)
+		cliff_data.hitboxes.append(null)
+		cliff_data.part_texture_override.append(null)
+		cliff_data.part_max_scale_override.append(null)
+
+	if pattern == "both":
+		# Gantian tiap spawn: sekali batu "kiri" (yang tadinya di sisi kiri), sekali
+		# batu "kanan" -> gak pernah 2 batu itu tampil bareng lagi.
+		if _both_alt_toggle:
+			cliff_data.part_texture_override[0] = both_right_texture
+			cliff_data.part_max_scale_override[0] = both_right_max_scale
+		else:
+			cliff_data.part_texture_override[0] = both_left_texture
+			cliff_data.part_max_scale_override[0] = both_left_max_scale
+		_both_alt_toggle = not _both_alt_toggle
+
+		if both_destructible:
+			_spawn_hitboxes_for(cliff_data)
+
 	active_cliffs.append(cliff_data)
 	_last_pattern = pattern
+
+## Bikin 1 Area2D hitbox per part buat pola "both" (2 batu), supaya laser
+## bisa "nembak" masing-masing batu secara individual.
+func _spawn_hitboxes_for(cliff_data: Dictionary) -> void:
+	for i in range(cliff_data.part_destroyed.size()):
+		var hitbox := Area2D.new()
+		hitbox.set_script(ObstacleHitboxScript)
+
+		var shape := CollisionShape2D.new()
+		var circle := CircleShape2D.new()
+		circle.radius = both_hitbox_radius
+		shape.shape = circle
+		hitbox.add_child(shape)
+
+		add_child(hitbox)
+		hitbox.hit_by_laser.connect(_on_part_destroyed.bind(cliff_data, i))
+		cliff_data.hitboxes[i] = hitbox
+
+## Dipanggil pas salah satu hitbox kena laser -> matiin part itu doang
+## (batu satunya di pola "both" tetep utuh & tetep bisa nabrak player).
+func _on_part_destroyed(cliff_data: Dictionary, part_index: int) -> void:
+	if part_index >= cliff_data.part_destroyed.size():
+		return
+	cliff_data.part_destroyed[part_index] = true
+	var hitbox = cliff_data.hitboxes[part_index]
+	if is_instance_valid(hitbox):
+		hitbox.queue_free()
+	cliff_data.hitboxes[part_index] = null
+
+func _free_hitboxes(cliff_data: Dictionary) -> void:
+	for hitbox in cliff_data.get("hitboxes", []):
+		if is_instance_valid(hitbox):
+			hitbox.queue_free()
 
 func _check_collision(cliff_data: Dictionary) -> void:
 	var player = _find_player()
 	if player == null:
 		return
 
-	var blocked_cols: Array = PATTERN_COLUMNS.get(cliff_data.pattern, [])
-	if player.grid_col in blocked_cols:
-		cliff_data.hit = true
-		if player.has_method("take_hit"):
-			player.take_hit()
+	var columns: Array = PATTERN_COLUMNS.get(cliff_data.pattern, [])
+	var destroyed: Array = cliff_data.get("part_destroyed", [])
+	for i in range(columns.size()):
+		if i < destroyed.size() and destroyed[i]:
+			continue # batu ini udah dihancurin laser, gak lagi nabrak player
+		if player.grid_col == columns[i]:
+			cliff_data.hit = true
+			if player.has_method("take_hit"):
+				player.take_hit()
+			return
 
 func _find_player() -> PlayerShip:
 	var players = get_tree().get_nodes_in_group("player")
@@ -418,11 +525,17 @@ func _draw() -> void:
 		var needs_telegraph: bool = cliff_data.pattern in telegraph_patterns
 		var rim_color: Color = _get_telegraph_color(cliff_data) if needs_telegraph else Color.WHITE
 
+		var destroyed: Array = cliff_data.get("part_destroyed", [])
+		var tex_overrides: Array = cliff_data.get("part_texture_override", [])
 		for i in range(parts.size()):
 			if i >= part_states.size():
 				continue
+			if i < destroyed.size() and destroyed[i]:
+				continue # batu ini udah dihancurin laser -> gak digambar lagi
 
 			var tex: Texture2D = parts[i].get("texture")
+			if i < tex_overrides.size() and tex_overrides[i] != null:
+				tex = tex_overrides[i]
 			if tex == null:
 				continue
 

@@ -46,6 +46,13 @@ func _on_area_entered(area: Area2D) -> void:
 	if area == self:
 		return
 
+	# Batu obstacle (pola "both") yang bisa dihancurin -> hitbox virtualnya
+	# adalah ObstacleHitbox, bukan child dari sesuatu, jadi dicek duluan.
+	if area is ObstacleHitbox:
+		area.take_hit()
+		queue_free()
+		return
+
 	# TargetShip dideteksi lewat Area2D anak (mis. "HitArea") yang jadi
 	# child langsung dari node TargetShip -> parent-nya adalah TargetShip.
 	var target := area.get_parent()
