@@ -1,5 +1,10 @@
 extends CanvasLayer
 
+## Tempat nitip data kecil antar-scene (mis. clear_time buat ClearScene) tanpa
+## perlu bikin autoload baru. Isi sebelum goto_scene(), scene tujuan yang baca
+## sebaiknya langsung erase() key-nya biar gak kebawa stale ke transisi berikutnya.
+var pending_data: Dictionary = {}
+
 var _fade_rect: ColorRect
 var _is_busy := false
 

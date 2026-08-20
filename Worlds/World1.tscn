@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bnphl0vw4j1mr" path="res://Assets/BG/tebing tengah.png" id="10_tebing_tengah"]
 [ext_resource type="Texture2D" uid="uid://cmd07ral0i8sq" path="res://Assets/BG/ssCliff-clean.png" id="11_ssCliff"]
 [ext_resource type="Texture2D" uid="uid://cogycogieta84" path="res://Assets/BG/ssCliff-clean-right.png" id="12_ssCliff_right"]
-[ext_resource type="PackedScene" path="res://Objects/PauseMenu.tscn" id="13_pause_menu"]
+[ext_resource type="PackedScene" uid="uid://vgtv7yx3yqnt" path="res://Objects/PauseMenu.tscn" id="13_pause_menu"]
 [ext_resource type="Script" uid="uid://cvr0bwlttxgff" path="res://scripts/ui_button_hover.gd" id="14_hover"]
 [ext_resource type="Texture2D" uid="uid://bvw6wwqqkxv80" path="res://Assets/Button/PNG/Pause_Button.png" id="15_pause_btn_tex"]
 
@@ -79,6 +79,7 @@ label_settings = SubResource("LabelSettings_hp")
 vertical_alignment = 1
 
 [node name="PauseButton" type="TextureButton" parent="TextHud" unique_id=862843435]
+visible = false
 offset_left = 1160.0
 offset_top = 16.0
 offset_right = 1260.0

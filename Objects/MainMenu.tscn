@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bhlota8vudks5"]
 
-[ext_resource type="PackedScene" path="res://Objects/MenuBackground.tscn" id="1_bg"]
+[ext_resource type="PackedScene" uid="uid://xvrh58h884h4" path="res://Objects/MenuBackground.tscn" id="1_bg"]
 [ext_resource type="Texture2D" uid="uid://cqqta1qsg77a4" path="res://Assets/pesawat player idle-spritesheet.png" id="2_ship_tex"]
 [ext_resource type="Script" uid="uid://d4dlbi4bgxojt" path="res://scripts/main_menu.gd" id="3_menu"]
 [ext_resource type="Script" uid="uid://oqjwystey7v7" path="res://scripts/ship_float.gd" id="4_float"]
-[ext_resource type="Texture2D" path="res://Assets/Button/PNG/OPTION_BUTTON_.png" id="5_cfo48"]
+[ext_resource type="Texture2D" uid="uid://c4t2omg8dw4pu" path="res://Assets/Button/PNG/OPTION_BUTTON_.png" id="5_cfo48"]
 [ext_resource type="Script" uid="uid://cvr0bwlttxgff" path="res://scripts/ui_button_hover.gd" id="5_hover"]
-[ext_resource type="Texture2D" path="res://Assets/Button/PNG/Play_Button.png" id="7_pa55y"]
+[ext_resource type="Texture2D" uid="uid://88ncve4we6yq" path="res://Assets/Button/PNG/Play_Button.png" id="7_pa55y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ship0"]
 atlas = ExtResource("2_ship_tex")
@@ -46,7 +46,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ship4")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 10.0
 }]
