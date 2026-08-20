@@ -3,7 +3,7 @@
 **Tim: Ini Namanya Apa?**
 
 ## Tentang Game BUMP DABOUNTY
->Game dibuat menggunakan game engine Godot, dengan tampilan visual Pixel
+>Game dibuat menggunakan game engine Godot, dengan tampilan visual Pixel<br><br>
 >Permainan pengejaran didalam grid 3x3 dimana player yang mengendarai pesawat harus sebisa mungkin menghindari semua tantangan yang datang mengarahnya untuk mengejar target.
 >Dengan begitu, ketika player sudah memasuki jarak pengaktifan finisher maka player baru bisa memenangkan permainan nya  
 
